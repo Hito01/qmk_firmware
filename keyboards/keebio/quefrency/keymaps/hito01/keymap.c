@@ -10,6 +10,7 @@ enum custom_keycodes {
   RARROW,
   LDARROW,
   RDARROW,
+  DEXEC,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -25,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE, KC_VOLD, KC_VOLU, KC_DEL,  KC_BSPC, _______, \
     RGB_TOG, RGB_MOD, _______, KC_UP,   _______, _______, _______, _______, _______, _______, _______, LARROW,  RARROW,  _______, _______, \
     _______, _______, KC_LEFT, INCCOL,  DECCOL,  _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-    _______, _______, _______, _______, _______, _______, _______, _______, LDARROW, RDARROW, _______, _______, _______, _______, \
+    _______, _______, DEXEC,   _______, _______, _______, _______, _______, LDARROW, RDARROW, _______, _______, _______, _______, \
     KC_TILD, KC_TRNS, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______, _______
   )
 };
@@ -74,6 +75,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
       case RDARROW:
         SEND_STRING ("=>");
+        break;
+      case DEXEC:
+        SEND_STRING ("docker exec -ti");
         break;
     }
   }
